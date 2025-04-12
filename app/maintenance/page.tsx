@@ -1,6 +1,4 @@
-'use client';
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Maintenance() {
   const [formData, setFormData] = useState({
@@ -10,10 +8,49 @@ export default function Maintenance() {
     issue: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [maintenanceRequests, setMaintenanceRequests] = useState([]);
+
+  useEffect(() => {
+    // Fetch the list of maintenance requests from the API
+    const fetchRequests = async () => {
+      try {
+        const response = await fetch('/api/maintenance');
+        const data = await response.json();
+        setMaintenanceRequests(data);
+      } catch (error) {
+        console.error("Error fetching maintenance requests:", error);
+      }
+    };
+
+    fetchRequests();
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
-    // Add logic to send form data to the server or API
+
+    try {
+      const response = await fetch('/api/maintenance', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert("Request submitted successfully!");
+        setFormData({ name: "", email: "", unit: "", issue: "" }); // Reset the form
+        // Fetch the updated list of requests
+        const updatedResponse = await fetch('/api/maintenance');
+        const updatedData = await updatedResponse.json();
+        setMaintenanceRequests(updatedData);
+      } else {
+        alert("There was an issue submitting your request. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Failed to submit request. Please try again.");
+    }
   };
 
   const handleChange = (
@@ -91,21 +128,13 @@ export default function Maintenance() {
 
       <h2>📋 Ongoing Maintenance Requests</h2>
       <ul style={maintenanceListStyle}>
-        <li style={listItemStyle}>
-          <strong>🚰 Leaking Pipe - Apartment 12B</strong>
-          <p>Status: <span style={statusInProgress}>In Progress 🔄</span></p>
-          <p>Reported on: March 28, 2025</p>
-        </li>
-        <li style={listItemStyle}>
-          <strong>💡 Light Out in Hallway - Level 3</strong>
-          <p>Status: <span style={statusCompleted}>Completed ✅</span></p>
-          <p>Resolved on: March 25, 2025</p>
-        </li>
-        <li style={listItemStyle}>
-          <strong>🛠 Broken Door Lock - Gym Entrance</strong>
-          <p>Status: <span style={statusPending}>Pending ⏳</span></p>
-          <p>Reported on: April 1, 2025</p>
-        </li>
+        {maintenanceRequests.map((request, index) => (
+          <li key={index} style={listItemStyle}>
+            <strong>{request.issue} - Apartment {request.unit}</strong>
+            <p>Status: <span style={statusInProgress}>In Progress 🔄</span></p>
+            <p>Reported on: {new Date().toLocaleDateString()}</p>
+          </li>
+        ))}
       </ul>
     </main>
   );
