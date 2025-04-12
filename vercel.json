@@ -8,16 +8,10 @@
   ],
   "regions": ["syd1"],
   "buildCommand": "npm run build",
-  "rewrites": [
-    {
-      "source": "/contact",
-      "destination": "/contact"
-    }
-  ],
   "crons": [
     {
       "path": "/api/notify-maintenance",
-      "schedule": "0 9 * * 1" // Every Monday at 9AM
+      "schedule": "0 9 * * 1"
     }
   ]
 }
