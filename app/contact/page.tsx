@@ -1,4 +1,6 @@
-import React, { useState } from "react"; // Ensure React and useState are imported
+// app/contact/page.tsx
+
+import { useState } from "react"; // Only import useState
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -9,14 +11,15 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    alert("Form submitted!");
+    // Handle form submission logic
+    console.log(formData);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
@@ -24,34 +27,43 @@ export default function Contact() {
     <main style={{ padding: "2rem", textAlign: "center" }}>
       <h1>Contact Us</h1>
       <form onSubmit={handleSubmit}>
-        <div style={inputWrapperStyle}>
-          <label>Name:</label>
+        <div style={{ marginBottom: "1rem" }}>
+          <label htmlFor="name" style={{ display: "block" }}>
+            Name:
+          </label>
           <input
             type="text"
+            id="name"
             name="name"
             value={formData.name}
             onChange={handleChange}
-            style={inputStyle}
+            style={{ padding: "0.5rem", width: "100%" }}
           />
         </div>
-        <div style={inputWrapperStyle}>
-          <label>Email:</label>
+        <div style={{ marginBottom: "1rem" }}>
+          <label htmlFor="email" style={{ display: "block" }}>
+            Email:
+          </label>
           <input
             type="email"
+            id="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            style={inputStyle}
+            style={{ padding: "0.5rem", width: "100%" }}
           />
         </div>
-        <div style={inputWrapperStyle}>
-          <label>Message:</label>
+        <div style={{ marginBottom: "1rem" }}>
+          <label htmlFor="message" style={{ display: "block" }}>
+            Message:
+          </label>
           <textarea
+            id="message"
             name="message"
             value={formData.message}
             onChange={handleChange}
-            style={inputStyle}
-          />
+            style={{ padding: "0.5rem", width: "100%" }}
+          ></textarea>
         </div>
         <button type="submit" style={buttonStyle}>
           Submit
@@ -60,18 +72,6 @@ export default function Contact() {
     </main>
   );
 }
-
-const inputWrapperStyle = {
-  marginBottom: "1rem",
-  textAlign: "left",
-};
-
-const inputStyle = {
-  width: "100%",
-  padding: "0.5rem",
-  borderRadius: "4px",
-  border: "1px solid #ccc",
-};
 
 const buttonStyle = {
   padding: "10px 20px",
