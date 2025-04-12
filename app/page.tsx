@@ -5,10 +5,10 @@ export default function Home() {
     <main className="home-container">
       {/* Hero Section */}
       <section className="hero">
-       <div className="hero-content">
-        <h1>Your Ideal Building Management Solution</h1>
-        <p>Efficient, Transparent, and Reliable</p>
-       </div>
+        <div className="hero-content">
+          <h1>Your Ideal Building Management Solution</h1>
+          <p>Efficient, Transparent, and Reliable</p>
+        </div>
       </section>
 
       {/* Features Section */}
