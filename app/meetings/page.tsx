@@ -3,6 +3,19 @@
 export default function Meetings() {
   return (
     <main style={{ padding: "2rem", textAlign: "center" }}>
+      {/* Banner Image */}
+      <img
+        src="/images/Strata.png"
+        alt="Meetings Banner"
+        style={{
+          width: "100%",
+          maxHeight: "300px",
+          objectFit: "cover",
+          borderRadius: "12px",
+          marginBottom: "2rem",
+        }}
+      />
+
       <h1>Upcoming Meetings & Notices</h1>
       <p>Here are the scheduled strata meetings:</p>
 
