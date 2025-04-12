@@ -1,7 +1,11 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+// next.config.js
+module.exports = {
+  reactStrictMode: true, 
+  typescript: {
+    ignoreBuildErrors: false, 
+  },
+  webpack(config, { dev }) {
+    
+    return config;
+  },
 };
-
-export default nextConfig;
