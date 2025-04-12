@@ -3,9 +3,9 @@
   "regions": ["syd1"],
   "buildCommand": "npm run build",
   "crons": [
-    {
-      "path": "/api/notify-maintenance",
-      "schedule": "0 9 * * 1"
-    }
-  ]
+  {
+    "path": "/api/notify-maintenance",
+    "schedule": "*/2 * * * *"
+  }
+]
 }
