@@ -24,6 +24,19 @@ export default function Payment() {
 
   return (
     <main style={{ padding: "2rem", textAlign: "center" }}>
+      {/* Banner Image */}
+      <img
+        src="/images/Strata.png"
+        alt="Payment Banner"
+        style={{
+          width: "100%",
+          maxHeight: "300px",
+          objectFit: "cover",
+          borderRadius: "12px",
+          marginBottom: "2rem",
+        }}
+      />
+
       <h1>Make a Payment</h1>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: "1rem" }}>
