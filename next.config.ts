@@ -1,11 +1,10 @@
 // next.config.js
 module.exports = {
-  reactStrictMode: true, 
+  reactStrictMode: true,
   typescript: {
-    ignoreBuildErrors: false, 
+    ignoreBuildErrors: false,
   },
   webpack(config, { dev }) {
-    
     return config;
   },
 };
