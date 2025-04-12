@@ -3,12 +3,19 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main style={{ padding: "2rem", textAlign: "center" }}>
+      {/* Logo Image */}
+      <img
+        src="/images/logo.png"
+        alt="Strata Manager Logo"
+        style={{ maxWidth: "200px", height: "auto", marginBottom: "1.5rem" }}
+      />
+
       <h1>Your Ideal Building Management Solution</h1>
       <p>Efficient, Transparent, and Reliable</p>
 
       <section style={{ marginTop: "2rem" }}>
         <h2>Why Choose Us?</h2>
-        <div style={{ display: "flex", justifyContent: "center", gap: "2rem" }}>
+        <div style={{ display: "flex", justifyContent: "center", gap: "2rem", flexWrap: "wrap" }}>
           <div style={featureStyle}>
             <span>🏢</span>
             <h3>Efficient Management</h3>
@@ -61,7 +68,7 @@ export default function Home() {
 
 const featureStyle = {
   width: "200px",
-  textAlign: "center" as "center", // Specify 'center' explicitly as the type
+  textAlign: "center" as "center",
   padding: "1rem",
   border: "1px solid #ddd",
   borderRadius: "8px",
@@ -70,7 +77,7 @@ const featureStyle = {
 
 const testimonialStyle = {
   margin: "1rem 0",
-  textAlign: "center" as "center", // Specify 'center' explicitly as the type
+  textAlign: "center" as "center",
 };
 
 const buttonStyle = {
