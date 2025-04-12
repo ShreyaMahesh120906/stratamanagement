@@ -12,11 +12,13 @@ export default function Maintenance() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData); // Log the form data for now
+    console.log(formData);
     // Add logic to send form data to the server or API
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -26,11 +28,27 @@ export default function Maintenance() {
 
   return (
     <main style={{ padding: "2rem", textAlign: "center" }}>
+      {/* Banner Image */}
+      <img
+        src="/images/Strata.png"
+        alt="Maintenance Banner"
+        style={{
+          width: "100%",
+          maxHeight: "300px",
+          objectFit: "cover",
+          borderRadius: "12px",
+          marginBottom: "2rem",
+        }}
+      />
+
       <h1>Maintenance Requests</h1>
       <p>Report and track maintenance issues for your building.</p>
 
       <h2>🔧 Submit a Request</h2>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      >
         <input
           type="text"
           name="name"
