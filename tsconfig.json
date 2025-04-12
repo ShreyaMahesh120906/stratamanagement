@@ -11,7 +11,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",   // Change to 'react-jsx' for automatic JSX runtime
+    "jsx": "react-jsx",  // Change this line to 'react-jsx'
     "incremental": true,
     "plugins": [
       {
