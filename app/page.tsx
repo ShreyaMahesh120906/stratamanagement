@@ -61,7 +61,7 @@ export default function Home() {
 
 const featureStyle = {
   width: "200px",
-  textAlign: "center",
+  textAlign: "center" as "center", // Specify 'center' explicitly as the type
   padding: "1rem",
   border: "1px solid #ddd",
   borderRadius: "8px",
@@ -70,7 +70,7 @@ const featureStyle = {
 
 const testimonialStyle = {
   margin: "1rem 0",
-  textAlign: "center",
+  textAlign: "center" as "center", // Specify 'center' explicitly as the type
 };
 
 const buttonStyle = {
