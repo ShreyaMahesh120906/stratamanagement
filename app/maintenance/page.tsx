@@ -29,6 +29,7 @@ export default function Maintenance() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault(); // Prevent the form from refreshing the page
+    console.log("Form submitted", formData); // Check formData when the form is submitted
 
     try {
       const response = await fetch('/api/maintenance', {
@@ -40,13 +41,16 @@ export default function Maintenance() {
       });
 
       if (response.ok) {
+        console.log("Request submitted successfully!");
         alert("Request submitted successfully!");
         setFormData({ name: "", email: "", unit: "", issue: "" }); // Reset the form
-        // Fetch the updated list of requests
+
+        // Fetch the updated list of requests after submission
         const updatedResponse = await fetch('/api/maintenance');
         const updatedData = await updatedResponse.json();
         setMaintenanceRequests(updatedData);
       } else {
+        console.log("Error submitting request:", response);
         alert("There was an issue submitting your request. Please try again.");
       }
     } catch (error) {
@@ -128,10 +132,14 @@ export default function Maintenance() {
           onChange={handleChange}
           style={{ ...inputStyle, height: "150px" }}
         ></textarea>
+
+        {/* Check if form is ready for submission */}
         <button
           type="submit"
           style={buttonStyle}
-          disabled={!formData.name || !formData.email || !formData.unit || !formData.issue}
+          disabled={
+            !formData.name || !formData.email || !formData.unit || !formData.issue
+          }
         >
           Submit Request
         </button>
