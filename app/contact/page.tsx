@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from "react"; // Ensure React and useState are imported
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -7,79 +7,69 @@ export default function Contact() {
     message: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    alert("Form submitted!");
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert("Form submitted!");
-  };
-
   return (
     <main style={{ padding: "2rem", textAlign: "center" }}>
       <h1>Contact Us</h1>
-      <p>We'd love to hear from you. Please fill out the form below.</p>
-
-      <form onSubmit={handleSubmit} style={{ marginTop: "2rem", maxWidth: "500px", margin: "auto" }}>
-        <div style={inputGroupStyle}>
-          <label htmlFor="name">Name</label>
+      <form onSubmit={handleSubmit}>
+        <div style={inputWrapperStyle}>
+          <label>Name:</label>
           <input
             type="text"
-            id="name"
             name="name"
             value={formData.name}
             onChange={handleChange}
-            required
             style={inputStyle}
           />
         </div>
-
-        <div style={inputGroupStyle}>
-          <label htmlFor="email">Email</label>
+        <div style={inputWrapperStyle}>
+          <label>Email:</label>
           <input
             type="email"
-            id="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            required
             style={inputStyle}
           />
         </div>
-
-        <div style={inputGroupStyle}>
-          <label htmlFor="message">Message</label>
+        <div style={inputWrapperStyle}>
+          <label>Message:</label>
           <textarea
-            id="message"
             name="message"
             value={formData.message}
             onChange={handleChange}
-            required
-            rows={4}
             style={inputStyle}
           />
         </div>
-
-        <button type="submit" style={buttonStyle}>Submit</button>
+        <button type="submit" style={buttonStyle}>
+          Submit
+        </button>
       </form>
     </main>
   );
 }
 
-const inputGroupStyle = {
-  marginBottom: "1.5rem",
+const inputWrapperStyle = {
+  marginBottom: "1rem",
   textAlign: "left",
 };
 
 const inputStyle = {
   width: "100%",
-  padding: "10px",
-  fontSize: "16px",
-  borderRadius: "8px",
+  padding: "0.5rem",
+  borderRadius: "4px",
   border: "1px solid #ccc",
 };
 
