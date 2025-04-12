@@ -2,40 +2,59 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div style={{ padding: "2rem", fontFamily: "sans-serif", textAlign: "center" }}>
-      <h1>Your Ideal Building Management Solution</h1>
-      <p>Efficient, Transparent, and Reliable</p>
+    <main style={{ padding: "2rem", textAlign: "center" }}>
+      {/* Hero Section */}
+      <section>
+        <h1>Your Ideal Building Management Solution</h1>
+        <p>Efficient, Transparent, and Reliable</p>
+      </section>
 
-      <h2 style={{ marginTop: "3rem" }}>Features</h2>
-      <ul style={{ listStyle: "none", padding: 0 }}>
-        <li>🏢 Efficient Management</li>
-        <li>💰 Transparent Payments</li>
-        <li>🔧 Maintenance Alerts</li>
-        <li>📅 Meeting Scheduling</li>
-      </ul>
+      {/* Features */}
+      <section style={{ marginTop: "2rem" }}>
+        <h2>Why Choose Us?</h2>
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "2rem", marginTop: "1rem" }}>
+          <Feature icon="🏢" title="Efficient Management" text="Smooth building operations and communication." />
+          <Feature icon="💰" title="Transparent Payments" text="Easy tracking and reminders for levies and fees." />
+          <Feature icon="🔧" title="Maintenance Alerts" text="Real-time updates on repair requests." />
+          <Feature icon="📅" title="Meeting Scheduling" text="Built-in calendar integration." />
+        </div>
+      </section>
 
-      <h2 style={{ marginTop: "3rem" }}>What Our Users Say</h2>
-      <p>"This platform has made building management effortless!" - Sarah W.</p>
-      <p>"A game-changer for our committee meetings!" - John D.</p>
-      <p>"Super easy to use and great support!" - Emma L.</p>
+      {/* Testimonials */}
+      <section style={{ marginTop: "4rem" }}>
+        <h2>What Our Users Say</h2>
+        <Testimonial quote="Effortless building management!" author="Sarah W." />
+        <Testimonial quote="A game-changer for meetings!" author="John D." />
+        <Testimonial quote="Super easy to use!" author="Emma L." />
+      </section>
 
-      <h2 style={{ marginTop: "3rem" }}>Need Assistance?</h2>
-      <p>Our support team is here to help.</p>
-
-      <div style={{ marginTop: "2rem", display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+      {/* Contact CTA */}
+      <section style={{ marginTop: "4rem" }}>
+        <h2>Need Assistance?</h2>
+        <p>Our support team is here to help.</p>
         <Link href="/contact">
-          <button style={buttonStyle}>Contact</button>
+          <button style={buttonStyle}>Contact Us</button>
         </Link>
-        <Link href="/maintenance">
-          <button style={buttonStyle}>Maintenance</button>
-        </Link>
-        <Link href="/meetings">
-          <button style={buttonStyle}>Meetings</button>
-        </Link>
-        <Link href="/payment">
-          <button style={buttonStyle}>Payment</button>
-        </Link>
-      </div>
+      </section>
+    </main>
+  );
+}
+
+function Feature({ icon, title, text }) {
+  return (
+    <div style={{ width: "200px", textAlign: "center" }}>
+      <div style={{ fontSize: "2rem" }}>{icon}</div>
+      <h3>{title}</h3>
+      <p>{text}</p>
+    </div>
+  );
+}
+
+function Testimonial({ quote, author }) {
+  return (
+    <div style={{ margin: "1rem 0" }}>
+      <p><em>“{quote}”</em></p>
+      <strong>- {author}</strong>
     </div>
   );
 }
