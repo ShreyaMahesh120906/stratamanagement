@@ -15,7 +15,9 @@ export default function Contact() {
     // Add logic to send form data to the server or API
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -25,10 +27,30 @@ export default function Contact() {
 
   return (
     <main style={{ padding: "2rem", textAlign: "center" }}>
+      {/* Banner Image */}
+      <img
+        src="/images/Strata.png"
+        alt="Strata Contact Banner"
+        style={{
+          width: "100%",
+          maxHeight: "300px",
+          objectFit: "cover",
+          borderRadius: "12px",
+          marginBottom: "2rem",
+        }}
+      />
+
       <h1>Contact the Strata Committee</h1>
       <p>Have questions or concerns? Get in touch with us.</p>
 
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
         <input
           type="text"
           name="name"
@@ -62,9 +84,15 @@ export default function Contact() {
 
       <h2>📞 Contact Information:</h2>
       <ul style={contactInfoStyle}>
-        <li><strong>Email:</strong> strata@buildingmanagement.com</li>
-        <li><strong>Phone:</strong> +61 2 1234 5678</li>
-        <li><strong>Office Hours:</strong> Mon-Fri, 9 AM - 5 PM</li>
+        <li>
+          <strong>Email:</strong> strata@buildingmanagement.com
+        </li>
+        <li>
+          <strong>Phone:</strong> +61 2 1234 5678
+        </li>
+        <li>
+          <strong>Office Hours:</strong> Mon-Fri, 9 AM - 5 PM
+        </li>
       </ul>
     </main>
   );
