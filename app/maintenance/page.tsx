@@ -10,8 +10,11 @@ export default function Maintenance() {
     issue: "",
   });
 
+  const [statusMessage, setStatusMessage] = useState(""); // For showing status messages
+
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();  // Prevent default form submission
+    e.preventDefault();
+    setStatusMessage("Submitting...");
 
     try {
       const response = await fetch('/api/maintenance', {
@@ -19,25 +22,19 @@ export default function Maintenance() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),  // Sending form data as JSON
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
-        console.log('Form submitted successfully');
-        alert('Maintenance request submitted successfully!');
-        setFormData({
-          name: "",
-          email: "",
-          unit: "",
-          issue: "",
-        });  // Clear the form after submission
+        const result = await response.json();
+        setStatusMessage(result.message); // Show the success message
       } else {
-        console.error('Failed to submit form');
-        alert('Failed to submit request. Please try again.');
+        const error = await response.json();
+        setStatusMessage(error.message); // Show error message
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('Error submitting the form. Please try again.');
+      console.error('Error submitting maintenance request:', error);
+      setStatusMessage('Failed to submit request. Please try again later.');
     }
   };
 
@@ -113,6 +110,9 @@ export default function Maintenance() {
           Submit Request
         </button>
       </form>
+
+      {/* Status message */}
+      <p>{statusMessage}</p>
 
       <h2>📋 Ongoing Maintenance Requests</h2>
       <ul style={maintenanceListStyle}>
