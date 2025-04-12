@@ -9,16 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "^18.0.0",       // Update to React 18 (latest stable)
-    "react-dom": "^18.0.0",   // Update to React 18 (latest stable)
-    "next": "^13.0.0"         // Update to Next.js 13 or above (latest stable)
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "15.3.0"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",   // Ensure you're using TypeScript 5.x
-    "@types/node": "^20.0.0",
-    "@types/react": "^18.0.0",  // Update to React 18 types
-    "@types/react-dom": "^18.0.0", // Update to React DOM types
-    "@tailwindcss/postcss": "^4.0.0",
-    "tailwindcss": "^4.0.0"
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@tailwindcss/postcss": "^4",
+    "tailwindcss": "^4"
   }
 }
