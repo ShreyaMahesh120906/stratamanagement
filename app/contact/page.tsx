@@ -1,6 +1,4 @@
-// app/contact/page.tsx
-
-import { useState } from "react"; // Only import useState
+import { useState } from "react"; // Import useState
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -11,8 +9,7 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic
-    console.log(formData);
+    console.log(formData); // Log the form data for now
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
