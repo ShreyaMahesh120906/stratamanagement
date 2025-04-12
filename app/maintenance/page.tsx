@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Maintenance() {
   const [formData, setFormData] = useState({
@@ -10,26 +10,8 @@ export default function Maintenance() {
     issue: "",
   });
 
-  const [maintenanceRequests, setMaintenanceRequests] = useState<any[]>([]); // State to hold ongoing maintenance requests
-
-  useEffect(() => {
-    // Fetching the ongoing maintenance requests from the API when the component mounts
-    const fetchMaintenanceRequests = async () => {
-      try {
-        const response = await fetch('/api/maintenance');
-        const data = await response.json();
-        setMaintenanceRequests(data); // Update the state with the fetched data
-      } catch (error) {
-        console.error("Error fetching maintenance requests:", error);
-      }
-    };
-
-    fetchMaintenanceRequests();
-  }, []);
-
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent the form from refreshing the page
-    console.log("Form submitted", formData); // Check formData when the form is submitted
+    e.preventDefault();  // Prevent default form submission
 
     try {
       const response = await fetch('/api/maintenance', {
@@ -37,25 +19,25 @@ export default function Maintenance() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData),  // Sending form data as JSON
       });
 
       if (response.ok) {
-        console.log("Request submitted successfully!");
-        alert("Request submitted successfully!");
-        setFormData({ name: "", email: "", unit: "", issue: "" }); // Reset the form
-
-        // Fetch the updated list of requests after submission
-        const updatedResponse = await fetch('/api/maintenance');
-        const updatedData = await updatedResponse.json();
-        setMaintenanceRequests(updatedData);
+        console.log('Form submitted successfully');
+        alert('Maintenance request submitted successfully!');
+        setFormData({
+          name: "",
+          email: "",
+          unit: "",
+          issue: "",
+        });  // Clear the form after submission
       } else {
-        console.log("Error submitting request:", response);
-        alert("There was an issue submitting your request. Please try again.");
+        console.error('Failed to submit form');
+        alert('Failed to submit request. Please try again.');
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("Failed to submit request. Please try again.");
+      console.error('Error submitting form:', error);
+      alert('Error submitting the form. Please try again.');
     }
   };
 
@@ -90,12 +72,7 @@ export default function Maintenance() {
       <h2>🔧 Submit a Request</h2>
       <form
         onSubmit={handleSubmit}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          marginBottom: "2rem",
-        }}
+        style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
         <input
           type="text"
@@ -132,28 +109,28 @@ export default function Maintenance() {
           onChange={handleChange}
           style={{ ...inputStyle, height: "150px" }}
         ></textarea>
-
-        {/* Check if form is ready for submission */}
-        <button
-          type="submit"
-          style={buttonStyle}
-          disabled={
-            !formData.name || !formData.email || !formData.unit || !formData.issue
-          }
-        >
+        <button type="submit" style={buttonStyle}>
           Submit Request
         </button>
       </form>
 
       <h2>📋 Ongoing Maintenance Requests</h2>
       <ul style={maintenanceListStyle}>
-        {maintenanceRequests.map((request, index) => (
-          <li key={index} style={listItemStyle}>
-            <strong>{request.issue}</strong>
-            <p>Status: <span style={statusInProgress}>In Progress 🔄</span></p>
-            <p>Reported on: {new Date(request.date).toLocaleDateString()}</p>
-          </li>
-        ))}
+        <li style={listItemStyle}>
+          <strong>🚰 Leaking Pipe - Apartment 12B</strong>
+          <p>Status: <span style={statusInProgress}>In Progress 🔄</span></p>
+          <p>Reported on: March 28, 2025</p>
+        </li>
+        <li style={listItemStyle}>
+          <strong>💡 Light Out in Hallway - Level 3</strong>
+          <p>Status: <span style={statusCompleted}>Completed ✅</span></p>
+          <p>Resolved on: March 25, 2025</p>
+        </li>
+        <li style={listItemStyle}>
+          <strong>🛠 Broken Door Lock - Gym Entrance</strong>
+          <p>Status: <span style={statusPending}>Pending ⏳</span></p>
+          <p>Reported on: April 1, 2025</p>
+        </li>
       </ul>
     </main>
   );
