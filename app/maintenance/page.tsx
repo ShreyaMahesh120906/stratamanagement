@@ -130,18 +130,19 @@ export default function Maintenance() {
       {requests.length === 0 ? (
         <p>No maintenance requests submitted yet.</p>
       ) : (
-        <ul style={maintenanceListStyle}>
+        <ul style={{ listStyle: "none", padding: 0 }}>
           {requests.map((req, index) => (
-            <li key={index} style={listItemStyle}>
-              <strong>🛠 {req.issue} - Unit {req.unit}</strong>
+            <li key={index} style={{ marginBottom: "1.5rem", borderBottom: "1px solid #ccc", paddingBottom: "1rem" }}>
+              <strong>🛠 {req.issue} – Apartment {req.unit}</strong>
               <p><strong>Name:</strong> {req.name}</p>
               <p><strong>Email:</strong> {req.email}</p>
-              <p>Status: <span style={statusPending}>Pending ⏳</span></p>
+              <p>Status: <span style={{ color: "gray" }}>Pending ⏳</span></p>
               <p>Reported on: {new Date().toLocaleDateString()}</p>
             </li>
           ))}
         </ul>
       )}
+
     </main>
   );
 }
