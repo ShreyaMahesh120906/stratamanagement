@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from "react";
 
 export default function Maintenance() {
@@ -9,24 +11,27 @@ export default function Maintenance() {
   });
 
   const [statusMessage, setStatusMessage] = useState("");
-  const [requests, setRequests] = useState<any[]>([]); // state to hold fetched requests
+  const [requests, setRequests] = useState<any[]>([]);
 
+  // Fetch maintenance requests from backend
   const fetchRequests = async () => {
     try {
       const response = await fetch('/api/maintenance');
       if (response.ok) {
         const data = await response.json();
-        setRequests(data); // set state with fetched data
+        setRequests(data);
       }
     } catch (error) {
       console.error("Failed to fetch maintenance requests", error);
     }
   };
 
+  // Load requests on first page load
   useEffect(() => {
-    fetchRequests(); // fetch data on load
+    fetchRequests();
   }, []);
 
+  // Handle form submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatusMessage("Submitting...");
@@ -41,8 +46,8 @@ export default function Maintenance() {
       if (response.ok) {
         const result = await response.json();
         setStatusMessage(result.message);
-        setFormData({ name: "", email: "", unit: "", issue: "" }); // reset form
-        fetchRequests(); // fetch updated data
+        setFormData({ name: "", email: "", unit: "", issue: "" });
+        fetchRequests();
       } else {
         const error = await response.json();
         setStatusMessage(error.message);
@@ -53,4 +58,122 @@ export default function Maintenance() {
     }
   };
 
-  // ...
+  // Handle input changes
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  return (
+    <main style={{ padding: "2rem", textAlign: "center" }}>
+      {/* Banner Image */}
+      <img
+        src="/images/Strata.png"
+        alt="Maintenance Banner"
+        style={{
+          width: "100%",
+          maxHeight: "300px",
+          objectFit: "cover",
+          borderRadius: "12px",
+          marginBottom: "2rem",
+        }}
+      />
+
+      <h1>Maintenance Requests</h1>
+      <p>Report and track maintenance issues for your building.</p>
+
+      <h2>🔧 Submit a Request</h2>
+      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          required
+          value={formData.name}
+          onChange={handleChange}
+          style={inputStyle}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          required
+          value={formData.email}
+          onChange={handleChange}
+          style={inputStyle}
+        />
+        <input
+          type="text"
+          name="unit"
+          placeholder="Apartment/Unit Number"
+          required
+          value={formData.unit}
+          onChange={handleChange}
+          style={inputStyle}
+        />
+        <textarea
+          name="issue"
+          placeholder="Describe the issue"
+          required
+          value={formData.issue}
+          onChange={handleChange}
+          style={{ ...inputStyle, height: "150px" }}
+        ></textarea>
+        <button type="submit" style={buttonStyle}>
+          Submit Request
+        </button>
+      </form>
+
+      <p>{statusMessage}</p>
+
+      <h2>📋 Ongoing Maintenance Requests</h2>
+      {requests.length === 0 ? (
+        <p>No maintenance requests submitted yet.</p>
+      ) : (
+        <ul style={maintenanceListStyle}>
+          {requests.map((req, index) => (
+            <li key={index} style={listItemStyle}>
+              <strong>🛠 {req.issue} - Unit {req.unit}</strong>
+              <p><strong>Name:</strong> {req.name}</p>
+              <p><strong>Email:</strong> {req.email}</p>
+              <p>Status: <span style={statusPending}>Pending ⏳</span></p>
+              <p>Reported on: {new Date().toLocaleDateString()}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </main>
+  );
+}
+
+// Styling
+const inputStyle = {
+  padding: "0.5rem",
+  width: "80%",
+  marginBottom: "1rem",
+  borderRadius: "8px",
+  border: "1px solid #ccc",
+};
+
+const buttonStyle = {
+  padding: "10px 20px",
+  fontSize: "16px",
+  borderRadius: "8px",
+  border: "1px solid #ccc",
+  backgroundColor: "#f4f4f4",
+  cursor: "pointer",
+};
+
+const maintenanceListStyle = {
+  listStyle: "none",
+  padding: "0",
+  textAlign: "center" as const,
+};
+
+const listItemStyle = {
+  marginBottom: "1.5rem",
+};
+
+const statusPending = {
+  color: "gray",
+};
