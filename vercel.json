@@ -1,11 +1,10 @@
 {
-  "version": 2,
-  "regions": ["syd1"],
   "buildCommand": "npm run build",
+  "regions": ["syd1"],
   "crons": [
-  {
-    "path": "/api/notify-maintenance",
-    "schedule": "*/2 * * * *"
-  }
-]
+    {
+      "path": "/api/notify-maintenance",
+      "schedule": "*/2 * * * *"
+    }
+  ]
 }
