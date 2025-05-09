@@ -1,6 +1,10 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
+  "functions": {
+    "api/notify-maintenance.ts": {
+      "runtime": "nodejs18.x"
+    }
+  },
   "regions": ["syd1"],
   "crons": [
     {
