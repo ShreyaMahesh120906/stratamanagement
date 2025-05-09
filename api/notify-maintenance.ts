@@ -1,4 +1,4 @@
-// /api/notify-maintenance.ts
+// api/notify-maintenance.ts
 import { VercelRequest, VercelResponse } from '@vercel/node';
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
