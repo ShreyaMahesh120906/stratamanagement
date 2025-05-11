@@ -11,6 +11,8 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    alert('Submit clicked!'); // ✅ Confirms the button works
+    console.log('Sending form data:', formData); // ✅ Check console
 
     try {
       const res = await fetch('/api/contacts', {
@@ -29,7 +31,7 @@ export default function Contact() {
         alert(`Failed: ${text}`);
       }
     } catch (error) {
-      console.error('Error submitting contact form:', error);
+      console.error('Submission error:', error);
       alert('Something went wrong.');
     }
   };
@@ -95,12 +97,13 @@ export default function Contact() {
       <ul style={contactInfoStyle}>
         <li><strong>Email:</strong> strata@buildingmanagement.com</li>
         <li><strong>Phone:</strong> +61 2 1234 5678</li>
-        <li><strong>Office Hours:</strong> Mon-Fri, 9 AM - 5 PM</li>
+        <li><strong>Office Hours:</strong> Mon–Fri, 9 AM – 5 PM</li>
       </ul>
     </main>
   );
 }
 
+// Styling
 const formStyle = {
   display: 'flex',
   flexDirection: 'column' as const,
