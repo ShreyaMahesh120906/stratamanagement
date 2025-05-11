@@ -3,6 +3,9 @@
   "functions": {
     "api/notify-maintenance.ts": {
       "runtime": "nodejs18.x"
+    },
+    "api/hello-edge.ts": {
+      "runtime": "edge"
     }
   },
   "regions": ["syd1"],
