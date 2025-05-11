@@ -3,13 +3,8 @@ export const config = {
 };
 
 export async function GET() {
-  const data = {
-    unit: "3B",
-    feeStatus: "Unpaid",
-    dueDate: "2025-05-30",
-  };
-
-  return new Response(JSON.stringify(data), {
+  return new Response(JSON.stringify({ success: true }), {
+    status: 200,
     headers: { "Content-Type": "application/json" },
   });
 }
