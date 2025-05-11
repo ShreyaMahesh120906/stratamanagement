@@ -1,4 +1,3 @@
-// app/api/contacts/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 
 export const config = {
