@@ -1,28 +1,10 @@
-import { NextResponse } from 'next/server';
+// app/api/maintenance/route.ts
+import { NextRequest, NextResponse } from 'next/server';
 
-export const config = {
-  runtime: 'edge',
-};
+export async function POST(req: NextRequest) {
+  const body = await req.json();
+  const { unit, issue } = body;
 
-export function GET() {
-  const mockRequests = [
-    {
-      issue: 'Leaking Pipe',
-      unit: '12B',
-      status: 'In Progress',
-      reported: '2025-03-28',
-    },
-    {
-      issue: 'Light Out in Hallway',
-      unit: 'Level 3',
-      status: 'Pending',
-      reported: '2025-04-01',
-    },
-  ];
-
-  return new NextResponse(JSON.stringify(mockRequests), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-  });
+  // You could send this to a database or email
+  return NextResponse.json({ status: 'received', ticketId: Date.now(), unit, issue });
 }
-
