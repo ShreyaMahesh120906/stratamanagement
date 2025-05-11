@@ -2,15 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
-    appDir: true,
+    appDir: false, // Disable App Router
   },
   typescript: {
     ignoreBuildErrors: false,
   },
-  output: 'standalone', // ✅ Enables proper deployment for Edge Functions on Vercel
-  webpack(config, { dev }) {
-    return config;
-  },
+  output: 'standalone',
 };
 
 module.exports = nextConfig;
