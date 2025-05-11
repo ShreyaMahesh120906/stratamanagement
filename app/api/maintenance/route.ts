@@ -1,10 +1,16 @@
 // app/api/maintenance/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 
+export const runtime = 'edge'; // Enables edge runtime
+
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const { unit, issue } = body;
 
-  // You could send this to a database or email
-  return NextResponse.json({ status: 'received', ticketId: Date.now(), unit, issue });
+  return NextResponse.json({
+    status: 'received',
+    ticketId: Date.now(),
+    unit,
+    issue,
+  });
 }
