@@ -1,3 +1,4 @@
+// pages/api/strata/lot.js
 export default function handler(req, res) {
   const { lotNumber } = req.query;
 
