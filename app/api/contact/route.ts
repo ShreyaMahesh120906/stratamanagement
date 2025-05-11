@@ -1,35 +1,41 @@
+// app/api/contacts/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const name = searchParams.get('name');
-  const email = searchParams.get('email');
+// Set runtime to edge
+export const config = {
+  runtime: 'edge',
+};
 
-  if (!name || !email) {
-    return NextResponse.json(
-      { error: 'Missing name or email in query string' },
-      { status: 400 }
-    );
-  }
+export async function GET(request: NextRequest) {
+  // Example: Return static contact data
+  const contacts = [
+    {
+      name: 'John Doe',
+      role: 'Strata Manager',
+      phone: '123-456-7890',
+      email: 'john.doe@stratacorp.com',
+    },
+    {
+      name: 'Emergency Line',
+      role: '24/7 Support',
+      phone: '987-654-3210',
+      email: 'support@stratacorp.com',
+    },
+  ];
 
-  return NextResponse.json(
-    { message: `Received GET request from ${name} with email ${email}` },
-    { status: 200 }
-  );
+  return NextResponse.json(contacts);
 }
 
-export async function POST(req: NextRequest) {
-  const body = await req.json();
-  const { name, email, message } = body;
+export async function POST(request: NextRequest) {
+  const body = await request.json();
 
-  if (!name || !email || !message) {
-    return NextResponse.json(
-      { error: 'All fields (name, email, message) are required' },
-      { status: 400 }
-    );
+  // Basic validation (expand as needed)
+  if (!body.name || !body.email || !body.message) {
+    return new NextResponse('Missing required fields', { status: 400 });
   }
 
-  console.log('Form submitted:', { name, email, message });
+  // Example: Log to console or forward to a service like Formspree, Email API, etc.
+  console.log('Received contact form:', body);
 
-  return NextResponse.redirect(new URL('/thank-you', req.url), 302);
+  return new NextResponse('Contact form submitted successfully', { status: 200 });
 }
