@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
-    appDir: false, // Disable App Router
+    appDir: true, // Enable App Router
   },
   typescript: {
     ignoreBuildErrors: false,
