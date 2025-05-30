@@ -1,5 +1,7 @@
 {
   "name": "strata-management-php",
   "description": "PHP support for Vercel deployment",
-  "require": {}
+  "require": {
+    "php": "^8.1"
+  }
 }
