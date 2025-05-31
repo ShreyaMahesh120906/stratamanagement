@@ -1,16 +1,16 @@
 {
   "version": 2,
   "functions": {
-    "api/notify-maintenance.ts": {
-      "runtime": "nodejs18.x"
-    },
-    "api/hello-edge.ts": {
-      "runtime": "edge"
-    },
-    "api-php/*.php": {
+    "php/*.php": {
       "runtime": "vercel-php@0.5.0"
     }
   },
+  "routes": [
+    {
+      "src": "/php/(.*)",
+      "dest": "/php/$1"
+    }
+  ],
   "regions": ["syd1"],
   "crons": [
     {
