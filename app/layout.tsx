@@ -26,8 +26,9 @@ export default function RootLayout({
           <Link href="/meetings" style={linkStyle}>📅 Meetings</Link>
           <Link href="/payment" style={linkStyle}>💳 Payments</Link>
           <Link href="/maintenance" style={linkStyle}>🛠 Maintenance</Link>
+          <Link href="/testimonials" style={linkStyle}>🌟 Testimonials</Link>
           <Link href="/contact" style={linkStyle}>📩 Contact</Link>
-        </nav>
+      </nav>
         <main style={{ padding: "2rem" }}>{children}</main>
       </body>
     </html>
