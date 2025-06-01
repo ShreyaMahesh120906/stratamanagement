@@ -15,7 +15,14 @@ export default function Home() {
 
       <section style={{ marginTop: "2rem" }}>
         <h2>Why Choose Us?</h2>
-        <div style={{ display: "flex", justifyContent: "center", gap: "2rem", flexWrap: "wrap" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "2rem",
+            flexWrap: "wrap",
+          }}
+        >
           <div style={featureStyle}>
             <span>🏢</span>
             <h3>Efficient Management</h3>
@@ -55,21 +62,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 🔽 PHP Integration Starts Here */}
+      {/* 🔽 PHP Integration via Link (instead of iframe) */}
       <section style={{ marginTop: "4rem" }}>
         <h2>Live Strata Notices (via PHP)</h2>
-        <p>This section shows dynamic PHP content from our server.</p>
-        <iframe
-          src="https://smah0632.replit.app"
-          width="100%"
-          height="400"
+        <p>This section links to dynamic PHP content hosted externally.</p>
+        <a
+          href="https://smah0632.replit.app"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
-            border: "1px solid #ccc",
-            borderRadius: "8px",
+            display: "inline-block",
             marginTop: "1rem",
+            padding: "10px 20px",
+            backgroundColor: "#0070f3",
+            color: "#fff",
+            borderRadius: "6px",
+            textDecoration: "none",
+            cursor: "pointer",
           }}
-          title="PHP Notices"
-        />
+        >
+          View PHP Notices Page
+        </a>
       </section>
 
       <section style={{ marginTop: "4rem" }}>
