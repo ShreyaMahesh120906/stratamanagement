@@ -47,22 +47,6 @@ export default function Home() {
       </section>
 
       <section style={{ marginTop: "4rem" }}>
-        <h2>What Our Users Say</h2>
-        <div style={testimonialStyle}>
-          <p>“Effortless building management!”</p>
-          <strong>- Sarah W.</strong>
-        </div>
-        <div style={testimonialStyle}>
-          <p>“A game-changer for meetings!”</p>
-          <strong>- John D.</strong>
-        </div>
-        <div style={testimonialStyle}>
-          <p>“Super easy to use!”</p>
-          <strong>- Emma L.</strong>
-        </div>
-      </section>
-
-      <section style={{ marginTop: "4rem" }}>
         <h2>Live Strata Notices (via PHP)</h2>
         <p>This section links to dynamic PHP content hosted externally.</p>
         <a
