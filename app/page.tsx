@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main style={{ padding: "2rem", textAlign: "center" }}>
+    <div style={{ textAlign: "center" }}>
       {/* Logo Image */}
       <img
         src="/images/logo.png"
@@ -62,7 +62,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 🔽 PHP Integration via Link (instead of iframe) */}
       <section style={{ marginTop: "4rem" }}>
         <h2>Live Strata Notices (via PHP)</h2>
         <p>This section links to dynamic PHP content hosted externally.</p>
@@ -92,13 +91,13 @@ export default function Home() {
           <button style={buttonStyle}>Contact Us</button>
         </Link>
       </section>
-    </main>
+    </div>
   );
 }
 
 const featureStyle = {
   width: "200px",
-  textAlign: "center" as "center",
+  textAlign: "center" as const,
   padding: "1rem",
   border: "1px solid #ddd",
   borderRadius: "8px",
@@ -107,7 +106,7 @@ const featureStyle = {
 
 const testimonialStyle = {
   margin: "1rem 0",
-  textAlign: "center" as "center",
+  textAlign: "center" as const,
 };
 
 const buttonStyle = {
