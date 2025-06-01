@@ -55,6 +55,23 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 🔽 PHP Integration Starts Here */}
+      <section style={{ marginTop: "4rem" }}>
+        <h2>Live Strata Notices (via PHP)</h2>
+        <p>This section shows dynamic PHP content from our server.</p>
+        <iframe
+          src="https://smah0632.replit.app"
+          width="100%"
+          height="400"
+          style={{
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            marginTop: "1rem",
+          }}
+          title="PHP Notices"
+        />
+      </section>
+
       <section style={{ marginTop: "4rem" }}>
         <h2>Need Assistance?</h2>
         <p>Our support team is here to help.</p>
