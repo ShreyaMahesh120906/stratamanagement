@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google"; // Importing Inter font
+import { Inter } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
-// Configuring the Inter font
 const inter = Inter({
-  variable: "--font-inter", // You can use your custom variable here
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -16,9 +15,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
@@ -29,25 +28,23 @@ export default function RootLayout({
           <Link href="/maintenance" style={linkStyle}>🛠 Maintenance</Link>
           <Link href="/contact" style={linkStyle}>📩 Contact</Link>
         </nav>
-        <main style={{ padding: '2rem' }}>
-          {children}
-        </main>
+        <main style={{ padding: "2rem" }}>{children}</main>
       </body>
     </html>
   );
 }
 
 const navStyle = {
-  display: 'flex',
-  gap: '1.5rem',
-  padding: '1rem 2rem',
-  backgroundColor: '#f8f8f8',
-  borderBottom: '1px solid #ddd',
-  fontSize: '1.1rem',
-  fontWeight: '500',
+  display: "flex",
+  gap: "1.5rem",
+  padding: "1rem 2rem",
+  backgroundColor: "#f8f8f8",
+  borderBottom: "1px solid #ddd",
+  fontSize: "1.1rem",
+  fontWeight: "500",
 };
 
 const linkStyle = {
-  textDecoration: 'none',
-  color: '#333',
+  textDecoration: "none",
+  color: "#333",
 };
